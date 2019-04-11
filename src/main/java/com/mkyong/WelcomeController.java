@@ -2,10 +2,14 @@ package com.mkyong;
 
 import java.util.Map;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mercadopago.MercadoPago;
+import com.mercadopago.core.MPApiResponse;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.Payment;
 import com.mkyong.DTO.CardToken;
+
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +27,6 @@ public class WelcomeController {
         model.put("paymentMethod", payment);
         return "welcome";
     }
-
 
 
     @RequestMapping(value = "/pagamento", method = RequestMethod.POST)
@@ -50,13 +53,13 @@ public class WelcomeController {
         try {
 
 
-            JSONObject json = new JSONObject(criarCheckoutTransparenteApp(acessToken, cardToken, itemId, titulo, Float.parseFloat(price), Integer.parseInt(quantity), name, surname, email, ddd, telefone, tipoDoc, documento, rua, numero, cep, bandeira, back_url));
-            System.out.println(json.toString());
 
-            model.put("descricao", json.getString("description"));
-            model.put("status", json.getString("status"));
-            model.put("idPagamento", json.getInt("id"));
+            Payment response = criarCheckoutTransparenteApp(acessToken, cardToken, itemId, titulo, Float.parseFloat(price), Integer.parseInt(quantity), name, surname, email, ddd, telefone, tipoDoc, documento, rua, numero, cep, bandeira, back_url);
+            System.out.println(response.toString());
 
+            model.put("descricao", response.getDescription());
+            model.put("status", response.getStatus());
+            model.put("idPagamento", response.getId());
 
 
         } catch (Exception e) {
@@ -69,7 +72,7 @@ public class WelcomeController {
 
     }
 
-    public String criarCheckoutTransparenteApp(String acessToken, CardToken cardToken, String itemid, String titulo, Float price, int quantity, String name, String surname, String email, String ddd, String telefone, String tipodoc, String doc
+    public Payment criarCheckoutTransparenteApp(String acessToken, CardToken cardToken, String itemid, String titulo, Float price, int quantity, String name, String surname, String email, String ddd, String telefone, String tipodoc, String doc
             , String rua, String numero, String cep, String bandeira, String back_url) throws MPException {
 
 
@@ -100,11 +103,9 @@ public class WelcomeController {
                                 .setStreetNumber(Integer.parseInt(numero))
                                 .setZipCode(cep)));
 
-        payment.save();
 
+        return payment.save();
 
-        System.out.println(payment.getLastApiResponse());
-        return payment.getLastApiResponse().getStringResponse();
 
     }
 
