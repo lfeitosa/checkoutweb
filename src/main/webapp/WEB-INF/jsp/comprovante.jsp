@@ -71,7 +71,7 @@
 	<tr>
 		<th>Pagamento</th>
 		<th>Descricao</th>
-		<th>Status</th>
+		<th>Status </th>
 	</tr>
 	<tr>
 		<td>${idPagamento}</td>
