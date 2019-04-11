@@ -43,7 +43,7 @@
 
 <div id="menu">
     <ul>
-        <form action="/index" method="POST" id="index" name="pay">
+        <form action="/" method="POST" id="index" name="pay">
 
         <li><button type="submit">Inicio</button></li>
 
@@ -57,7 +57,7 @@
             <h1>FIFA 2019</h1>
             <h2> Valor 100.00</h2></th>
         <th>
-            <form action="/" method="POST" id="redirect" name="pay">
+            <form action="/checkoutTransparente" method="POST" id="redirect" name="pay">
 
                 <button type="submit" name="myButton" value="foo" style="width: 200px; height: 50px">Transparente</button>
 

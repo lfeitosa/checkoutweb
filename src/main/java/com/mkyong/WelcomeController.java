@@ -19,15 +19,15 @@ public class WelcomeController {
     private static final String CLIENT_ID = "3116859414017650";
 
 
-    @RequestMapping("/")
+    @RequestMapping("/checkoutTransparente")
 
     public String welcome(Map<String, Object> model) {
 
         Payment payment = new Payment();
         model.put("paymentMethod", payment);
-        return "index";
+        return "checkoutTransparente";
     }
-    @RequestMapping("/index")
+    @RequestMapping("/")
 
     public String index(Map<String, Object> model) {
 

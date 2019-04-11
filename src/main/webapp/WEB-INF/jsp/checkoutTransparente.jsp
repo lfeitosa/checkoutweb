@@ -43,7 +43,7 @@
 
 <div id="menu">
     <ul>
-        <form action="/index" method="POST" id="index" name="pay">
+        <form action="/" method="POST" id="index" name="pay">
 
             <li><button type="submit">Inicio</button></li>
 

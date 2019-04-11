@@ -83,7 +83,7 @@
 <br>
 <br>
 <br>
-<center> <form action="/index" method="POST" id="transparente" name="pay">
+<center> <form action="/" method="POST" id="transparente" name="pay">
 
 	<button type="submit" name="myButton" value="foo" style="width: 200px; height: 50px">Inicio</button>
 
