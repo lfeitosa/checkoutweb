@@ -25,7 +25,7 @@ public class WelcomeController {
 
         Payment payment = new Payment();
         model.put("paymentMethod", payment);
-        return "checkoutTransparente";
+        return "index";
     }
     @RequestMapping("/index")
 
